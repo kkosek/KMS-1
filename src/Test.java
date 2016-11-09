@@ -2,7 +2,7 @@ public class Test
 {
 	private static int count = 0;
 	
-	public static void print(Vector [] vectorArray)
+	public static void printAndExit(Vector [] vectorArray)
 	{
 		System.out.println("Count="+count);
 		System.out.println("Printing started...");
@@ -14,6 +14,19 @@ public class Test
 		count +=1;
 		System.out.println("Printing finished.");
 		System.exit(0);
+	}
+	
+	public static void print(Vector [] vectorArray)
+	{
+		System.out.println("Count="+count);
+		System.out.println("Printing started...");
+		for (int i=0; i<vectorArray.length; i++)
+		{	
+			isNull(vectorArray[i]);
+			vectorArray[i].print();
+		}
+		count +=1;
+		System.out.println("Printing finished.");
 	}
 	
 	public static void isNull(Object o)

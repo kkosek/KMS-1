@@ -147,11 +147,13 @@ public class Parameters
 
 	public double getS_out()
 	{
+		System.out.println("S_out="+S_out);
 		return S_out;
 	}
 
 	public double getS_xyz()
 	{
+		System.out.println("S_xyz="+S_xyz);
 		return S_xyz;
 	}
 	

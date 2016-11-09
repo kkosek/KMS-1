@@ -26,7 +26,7 @@ public class Vector {
 		this.z = vector.z;
 	}
 	
-	public Vector multiply(double constant)
+	public Vector getMultipliedByConst(double constant)
 	{
 		double x = this.x * constant;
 		double y = this.y * constant;
@@ -90,28 +90,32 @@ public class Vector {
 	
 	public static Vector sum(Vector v1, Vector v2)
 	{
-		v1.add(v2);
-		return v1;
+		Vector v3 = new Vector(v1.x + v2.x,
+				v1.y+v2.y,
+				v1.z+v2.z);
+		return v3;
 	}
-	
+		
 	public static Vector [] sum(Vector [] v1, Vector [] v2)
 	{
 		if (v1.length!=v2.length)
 			System.out.println("Nie zgadza się rozmiar tablic.");
 		
-		for (int i=0; i<v1.length; i++)
-			v1[i].add(v2[i]);
+		Vector [] v3 = new Vector [v1.length]; 
 		
-		return v1;
+		for (int i=0; i<v1.length; i++)
+			v3[i] = sum(v1[i], v2[i]);
+		
+		return v3;
 	}
 	
 	public static Vector [] mulitply(Vector [] v, double constant)
 	{
-
+		Vector [] v2 = new Vector[v.length];
 		for(int i=0; i<v.length; i++)
-			v[i].multiplyThis(constant);
+			v2[i] = v[i].getMultipliedByConst(constant);
 		
-		return v;
+		return v2;
 	}
 	
 	public static Vector [] getInitializedArray(int size)

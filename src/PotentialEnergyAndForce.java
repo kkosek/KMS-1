@@ -39,7 +39,7 @@ public class PotentialEnergyAndForce
 		if (moduleOfPosition<L)
 			return new Vector(0,0,0);
 		else
-			return positions[index].multiply((L-moduleOfPosition)/moduleOfPosition);
+			return positions[index].getMultipliedByConst(f*(L-moduleOfPosition)/moduleOfPosition);
 	}
 	
 	private double getTemporaryPressure(int index)
@@ -58,7 +58,7 @@ public class PotentialEnergyAndForce
 	{
 		double moduleR = Vector.subtract(positions[i], positions[j]).module();
 		double c = Math.pow(R/moduleR, 6);
-		Vector forceValue = Vector.subtract(positions[i], positions[j]).multiply(12*epsilon*(c*c - c)*1/(moduleR*moduleR));
+		Vector forceValue = Vector.subtract(positions[i], positions[j]).getMultipliedByConst(12*epsilon*(c*c - c)*1/(moduleR*moduleR));
 		return forceValue;
 	}
 	
@@ -73,9 +73,10 @@ public class PotentialEnergyAndForce
 		for (int i=0; i<N; i++)
 		{
 			moduleOfPosition = positions[i].module();
-			
 			V += getPotentialFromWalls(moduleOfPosition);
+			
 			force[i].add(getRepulsionFromWallsForce(i, moduleOfPosition, positions));
+			//getRepulsionFromWallsForce(i, moduleOfPosition, positions).print();
 			
 			P += getTemporaryPressure(i);
 			for (int j=0; j<i; j++)
@@ -83,9 +84,10 @@ public class PotentialEnergyAndForce
 				V += getVanDerWaalsForce(i, j, positions);
 				forcesBetweenAtoms = getForcesBeetwenAtoms(i, j, moduleOfPosition, positions);
 				force[i].add(forcesBetweenAtoms);
-				force[j].add(forcesBetweenAtoms.multiply(-1));
+				force[j].add(forcesBetweenAtoms.getMultipliedByConst(-1));
 			}
 		}
+		
 	}
 	
 	public void writeToFile()

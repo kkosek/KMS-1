@@ -54,9 +54,9 @@ public class PositionsAndMomentums
 	
 	private Vector setPosition(int i0, int i1, int i2)
 	{
-		Vector v1 = b0.multiply(i0 - (n-1)/2);
-		Vector v2 = b1.multiply(i1 - (n-1)/2);
-		Vector v3 = b2.multiply(i2 - (n-1)/2);
+		Vector v1 = b0.getMultipliedByConst(i0 - (n-1)/2);
+		Vector v2 = b1.getMultipliedByConst(i1 - (n-1)/2);
+		Vector v3 = b2.getMultipliedByConst(i2 - (n-1)/2);
 		
 		Vector resultVector = Vector.sum(v1, v2, v3);
 		return resultVector;

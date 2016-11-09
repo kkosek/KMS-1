@@ -13,7 +13,5 @@ public class Main
 		algorithm.start();
 		System.out.print("Finished. Time: ");
 		System.out.print(getCalculationTime(startTime) + "s");
-
-
 	}
 }

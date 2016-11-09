@@ -123,9 +123,6 @@ public class FullAlgorithm
 		Vector [] nextForce = potentialEnergyAndForce.getForce();
 		
 		Vector [] nextMomentum = Vector.sum(halfMomentum, Vector.mulitply(nextForce, 0.5*tau));
-		
-		Test.print(halfMomentum);
-		
 		multiplePositionsFile.writeToXYZFormat(startPositions);
 		
 		for (int i=1; i<S_0+S_d; i++)
@@ -135,6 +132,7 @@ public class FullAlgorithm
 			nextPositions = Vector.sum(nextPositions, Vector.mulitply(halfMomentum, tau/m));
 			potentialEnergyAndForce.setAll(nextPositions);
 			nextForce = potentialEnergyAndForce.getForce();
+
 			nextMomentum = Vector.sum(halfMomentum, Vector.mulitply(nextForce, tau/2));
 			countTemperatureAndHamiltonian(nextMomentum);
 			
@@ -143,8 +141,8 @@ public class FullAlgorithm
 			if((i % S_xyz) == 0)
 			{
 				writeCoordinates(nextPositions, nextMomentum);
+				multiplePositionsFile.writeToXYZFormat(nextPositions);
 			}
-			multiplePositionsFile.writeToXYZFormat(nextPositions);
 		}
 		
 		characteristicsFile.writeCharacteristics(characteristics);
