@@ -124,6 +124,7 @@ public class FullAlgorithm
 		
 		Vector [] nextMomentum = Vector.sum(halfMomentum, Vector.mulitply(nextForce, 0.5*tau));
 		multiplePositionsFile.writeToXYZFormat(startPositions);
+		updateCharacteristics();
 		
 		for (int i=1; i<S_0+S_d; i++)
 		{
